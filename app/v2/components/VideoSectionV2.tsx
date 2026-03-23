@@ -2,17 +2,17 @@
 import { Play } from "lucide-react";
 import { useState } from "react";
 
-export default function VideoSection() {
+export default function VideoSectionV2() {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <span className="text-red-600 font-semibold text-sm uppercase tracking-wider">
+          <span className="text-green-600 font-semibold text-sm uppercase tracking-wider">
             See How It Works
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a2744] mt-2 mb-4">
+          <h2 className="text-[40px] font-normal mt-2 mb-4" style={{ color: "rgb(47, 47, 47)" }}>
             Watch How Presto Realty Works
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
@@ -36,7 +36,7 @@ export default function VideoSection() {
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <button
                     onClick={() => setPlaying(true)}
-                    className="w-20 h-20 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center shadow-2xl transition-all duration-200 hover:scale-110 mb-6"
+                    className="w-20 h-20 bg-green-600 hover:bg-green-700 rounded-full flex items-center justify-center shadow-2xl transition-all duration-200 hover:scale-110 mb-6"
                     aria-label="Play video"
                   >
                     <Play size={32} className="text-white ml-1" fill="white" />

@@ -7,33 +7,33 @@ const stats = [
   { icon: TrendingUp, value: "$80M+", label: "Paid to Homeowners" },
 ];
 
-export default function LargestBuyer() {
+export default function LargestBuyerV2() {
   return (
-    <section className="py-20 bg-[#1a2744]">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left text */}
           <div>
-            <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">
+            <span className="text-green-600 font-semibold text-sm uppercase tracking-wider">
               About Us
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-6">
+            <h2 className="text-[40px] font-normal mt-2 mb-6" style={{ color: "rgb(47, 47, 47)" }}>
               Presto Realty — Las Vegas&apos; Most Trusted Cash Home Buyers
             </h2>
-            <p className="text-gray-300 leading-relaxed mb-6">
+            <p className="text-gray-500 leading-relaxed mb-6">
               For over a decade, Presto Realty has been the most trusted home buyer in the Las Vegas
               area. We specialize in buying homes in any condition — whether you&apos;re facing
               foreclosure, going through a divorce, dealing with an inherited property, or simply
               need to sell fast.
             </p>
-            <p className="text-gray-300 leading-relaxed mb-8">
+            <p className="text-gray-500 leading-relaxed mb-8">
               The Presto Realty team of real estate professionals is committed to making your
               selling experience stress-free. We handle all the paperwork, cover closing costs,
               and work on your timeline — not ours.
             </p>
             <a
               href="#contact"
-              className="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200"
+              className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-200"
             >
               Learn More About Presto Realty
             </a>
@@ -46,13 +46,13 @@ export default function LargestBuyer() {
               return (
                 <div
                   key={i}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-colors duration-200"
+                  className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 text-center hover:shadow-md transition-shadow duration-200"
                 >
-                  <div className="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Icon size={24} className="text-red-400" />
+                  <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Icon size={24} className="text-green-600" />
                   </div>
-                  <div className="text-3xl font-extrabold text-white mb-1">{s.value}</div>
-                  <div className="text-gray-400 text-sm">{s.label}</div>
+                  <div className="text-3xl font-extrabold mb-1" style={{ color: "rgb(47, 47, 47)" }}>{s.value}</div>
+                  <div className="text-gray-500 text-sm">{s.label}</div>
                 </div>
               );
             })}

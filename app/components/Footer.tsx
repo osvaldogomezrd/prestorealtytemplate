@@ -30,23 +30,23 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-5">
               <div className="w-10 h-10 bg-red-600 rounded-md flex items-center justify-center">
-                <span className="text-white font-bold text-lg">R</span>
+                <span className="text-white font-bold text-lg">P</span>
               </div>
               <span className="text-white font-bold text-xl leading-tight">
-                We Buy Houses<br />
-                <span className="text-red-400 text-sm font-medium">Las Vegas</span>
+                Presto<br />
+                <span className="text-red-400 text-sm font-medium">Realty</span>
               </span>
             </div>
             <p className="text-sm leading-relaxed mb-5">
-              Las Vegas&apos; most trusted cash home buyers. We buy houses in any condition, fast and
-              fair.
+              Las Vegas&apos; most trusted cash home buyers. Presto Realty buys houses in any
+              condition, fast and fair.
             </p>
             <div className="space-y-2">
               <a href="tel:+17025550000" className="flex items-center gap-2 text-sm hover:text-white transition-colors">
                 <Phone size={14} className="text-red-400" /> (702) 555-0000
               </a>
-              <a href="mailto:info@webuyhouseslv.com" className="flex items-center gap-2 text-sm hover:text-white transition-colors">
-                <Mail size={14} className="text-red-400" /> info@webuyhouseslv.com
+              <a href="mailto:info@prestorealty.com" className="flex items-center gap-2 text-sm hover:text-white transition-colors">
+                <Mail size={14} className="text-red-400" /> info@prestorealty.com
               </a>
               <span className="flex items-center gap-2 text-sm">
                 <MapPin size={14} className="text-red-400" /> Las Vegas, NV 89101
@@ -98,7 +98,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs">
-            © {new Date().getFullYear()} We Buy Houses Las Vegas. All rights reserved.
+            © {new Date().getFullYear()} Presto Realty Las Vegas. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <a href="#" className="text-xs hover:text-white transition-colors">Privacy Policy</a>

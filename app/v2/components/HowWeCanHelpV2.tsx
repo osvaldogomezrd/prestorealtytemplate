@@ -52,15 +52,15 @@ const situations = [
   },
 ];
 
-export default function HowWeCanHelp() {
+export default function HowWeCanHelpV2() {
   return (
     <section id="how-it-works" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <span className="text-red-600 font-semibold text-sm uppercase tracking-wider">
+          <span className="text-green-600 font-semibold text-sm uppercase tracking-wider">
             Situations We Handle
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a2744] mt-2 mb-4">
+          <h2 className="text-[40px] font-normal mt-2 mb-4" style={{ color: "rgb(47, 47, 47)" }}>
             How Presto Realty Can Help
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
@@ -75,15 +75,15 @@ export default function HowWeCanHelp() {
             return (
               <div
                 key={i}
-                className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
+                className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 group"
               >
-                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-600 transition-colors duration-200">
+                <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-green-600 transition-colors duration-200">
                   <Icon
                     size={22}
-                    className="text-red-500 group-hover:text-white transition-colors duration-200"
+                    className="text-green-600 group-hover:text-white transition-colors duration-200"
                   />
                 </div>
-                <h3 className="font-bold text-[#1a2744] mb-2">{s.title}</h3>
+                <h3 className="font-bold mb-2" style={{ color: "rgb(47, 47, 47)" }}>{s.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{s.description}</p>
               </div>
             );
@@ -93,7 +93,7 @@ export default function HowWeCanHelp() {
         <div className="text-center">
           <a
             href="#contact"
-            className="inline-block bg-[#1a2744] hover:bg-[#243260] text-white font-semibold px-10 py-4 rounded-lg transition-colors duration-200 shadow-md"
+            className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-10 py-4 rounded-full transition-colors duration-200 shadow-md"
           >
             Get Help Today
           </a>

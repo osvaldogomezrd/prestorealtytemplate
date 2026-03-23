@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
-import { Search, Star } from "lucide-react";
+import { Star } from "lucide-react";
+import Image from "next/image";
+import AddressAutocomplete from "./AddressAutocomplete";
 
 export default function Hero() {
   const [address, setAddress] = useState("");
@@ -30,7 +32,7 @@ export default function Hero() {
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-            We Buy Houses{" "}
+            Presto Realty{" "}
             <span className="text-red-400">Las Vegas</span>
             <br />
             <span className="text-3xl md:text-4xl font-semibold text-gray-300">
@@ -39,28 +41,37 @@ export default function Hero() {
           </h1>
 
           <p className="text-gray-300 text-lg mb-10 max-w-xl mx-auto">
-            Skip the repairs, agent fees, and long waits. Get a fair cash offer on
-            your home in 24 hours — close in as little as 7 days.
+            Skip the repairs, agent fees, and long waits. Presto Realty gives you a fair cash
+            offer on your home in 24 hours — close in as little as 7 days.
           </p>
 
           {/* Search form */}
           <div className="bg-white rounded-xl shadow-2xl p-2 flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto">
-            <div className="flex items-center gap-2 flex-1 px-4 py-2">
-              <Search size={20} className="text-gray-400 shrink-0" />
-              <input
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Enter your property address..."
-                className="flex-1 outline-none text-gray-700 text-sm placeholder-gray-400"
-              />
-            </div>
+            <AddressAutocomplete
+              value={address}
+              onChange={setAddress}
+              placeholder="Enter your property address..."
+              showIcon
+              className="flex-1 outline-none text-gray-700 text-sm placeholder-gray-400 px-2 py-2 w-full"
+            />
             <a
               href="#contact"
               className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg text-sm transition-colors duration-200 text-center whitespace-nowrap"
             >
               Get My Cash Offer
             </a>
+          </div>
+
+          {/* Trust badges — Google & BBB */}
+          <div className="mt-4 flex justify-center max-w-2xl mx-auto">
+            <Image
+              src="/trust-badges.png"
+              alt="Google 4.8 stars & BBB A+ Accredited Business"
+              width={280}
+              height={60}
+              className="h-12 w-auto object-contain"
+              priority
+            />
           </div>
 
           {/* Trust indicators */}

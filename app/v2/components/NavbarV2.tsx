@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 
 const DARK = "rgb(47, 47, 47)";
@@ -8,6 +9,11 @@ export default function NavbarV2() {
   const [open, setOpen] = useState(false);
   const [homeDropdownOpen, setHomeDropdownOpen] = useState(false);
 
+  const homeLinks = [
+    { href: "/", label: "Home" },
+    { href: "/v2", label: "Home v2" },
+    { href: "/v3", label: "Home v3" },
+  ];
   const otherLinks = ["About Us", "How It Works", "Testimonials", "FAQ", "Contact"];
 
   return (
@@ -44,22 +50,24 @@ export default function NavbarV2() {
                 />
               </button>
               {homeDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-36 bg-white border border-gray-100 rounded-md shadow-lg py-1 z-50">
-                  <a
-                    href="/"
-                    className="block px-4 py-2 text-sm transition-colors duration-150 hover:text-green-600 hover:bg-gray-50"
-                    style={{ color: DARK }}
-                    onClick={() => setHomeDropdownOpen(false)}
-                  >
-                    Home
-                  </a>
-                  <a
-                    href="/v2"
-                    className="block px-4 py-2 text-sm font-medium text-green-600 hover:bg-gray-50 transition-colors duration-150"
-                    onClick={() => setHomeDropdownOpen(false)}
-                  >
-                    Home v2
-                  </a>
+                <div className="absolute top-full left-0 pt-2 w-36 z-50">
+                  <div className="bg-white border border-gray-100 rounded-md shadow-lg py-1">
+                    {homeLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className={`block px-4 py-2 text-sm transition-colors duration-150 hover:text-green-600 hover:bg-gray-50 ${
+                          link.href === "/v2"
+                            ? "font-medium text-green-600"
+                            : ""
+                        }`}
+                        style={link.href === "/v2" ? undefined : { color: DARK }}
+                        onClick={() => setHomeDropdownOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -109,21 +117,23 @@ export default function NavbarV2() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 pb-4 pt-2">
-          <a
-            href="/"
-            className="block py-2 text-sm font-medium border-b border-gray-100 transition-colors hover:text-green-600"
-            style={{ color: DARK }}
-            onClick={() => setOpen(false)}
-          >
-            Home
-          </a>
-          <a
-            href="/v2"
-            className="block py-2 text-sm font-medium border-b border-gray-100 pl-4 text-green-600"
-            onClick={() => setOpen(false)}
-          >
-            Home v2
-          </a>
+          {homeLinks.map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`block py-2 text-sm font-medium border-b border-gray-100 transition-colors hover:text-green-600 ${
+                link.href === "/v2"
+                  ? "text-green-600"
+                  : index === 0
+                    ? ""
+                    : "pl-4"
+              }`}
+              style={link.href === "/v2" ? undefined : { color: DARK }}
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
           {otherLinks.map((l) => (
             <a
               key={l}

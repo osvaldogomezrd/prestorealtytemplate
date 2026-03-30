@@ -1,11 +1,17 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [homeDropdownOpen, setHomeDropdownOpen] = useState(false);
 
+  const homeLinks = [
+    { href: "/", label: "Home" },
+    { href: "/v2", label: "Home v2" },
+    { href: "/v3", label: "Home v3" },
+  ];
   const otherLinks = ["About Us", "How It Works", "Testimonials", "FAQ", "Contact"];
 
   return (
@@ -40,21 +46,23 @@ export default function Navbar() {
                 />
               </button>
               {homeDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-36 bg-[#0f1a30] rounded-md shadow-lg py-1 z-50">
-                  <a
-                    href="/"
-                    className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#1a2744] transition-colors duration-150"
-                    onClick={() => setHomeDropdownOpen(false)}
-                  >
-                    Home
-                  </a>
-                  <a
-                    href="/v2"
-                    className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#1a2744] transition-colors duration-150"
-                    onClick={() => setHomeDropdownOpen(false)}
-                  >
-                    Home v2
-                  </a>
+                <div className="absolute top-full left-0 pt-2 w-36 z-50">
+                  <div className="bg-[#0f1a30] rounded-md shadow-lg py-1">
+                    {homeLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className={`block px-4 py-2 text-sm transition-colors duration-150 hover:text-white hover:bg-[#1a2744] ${
+                          link.href === "/"
+                            ? "bg-[#1a2744] text-white"
+                            : "text-gray-300"
+                        }`}
+                        onClick={() => setHomeDropdownOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -98,21 +106,18 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-[#0f1a30] px-4 pb-4 pt-2">
-          {/* Home items inline */}
-          <a
-            href="/"
-            className="block text-gray-300 hover:text-white py-2 text-sm font-medium border-b border-gray-700"
-            onClick={() => setOpen(false)}
-          >
-            Home
-          </a>
-          <a
-            href="/v2"
-            className="block text-gray-300 hover:text-white py-2 text-sm font-medium border-b border-gray-700 pl-4"
-            onClick={() => setOpen(false)}
-          >
-            Home v2
-          </a>
+          {homeLinks.map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`block py-2 text-sm font-medium border-b border-gray-700 hover:text-white ${
+                index === 0 ? "text-white" : "text-gray-300 pl-4"
+              }`}
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
           {otherLinks.map((l) => (
             <a
               key={l}

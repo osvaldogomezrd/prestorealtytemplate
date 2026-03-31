@@ -1,5 +1,6 @@
 import NavbarV2 from "./components/NavbarV2";
 import HeroV2 from "./components/HeroV2";
+import TrustTicker from "../components/TrustTicker";
 import HappySellersV2 from "./components/HappySellersV2";
 import StepperV2 from "./components/StepperV2";
 import VideoSectionV2 from "./components/VideoSectionV2";
@@ -19,6 +20,7 @@ export default function V2Page() {
     <main className="flex-1">
       <NavbarV2 />
       <HeroV2 />
+      <TrustTicker />
       <HappySellersV2 />
       <StepperV2 />
       <VideoSectionV2 />

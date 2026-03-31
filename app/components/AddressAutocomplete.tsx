@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { MapPin } from "lucide-react";
 
 interface AddressAutocompleteProps {
@@ -26,6 +26,12 @@ export default function AddressAutocomplete({
 }: AddressAutocompleteProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+  const blurTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [suggestions, setSuggestions] = useState<
+    Array<{ display_name: string; place_id: number }>
+  >([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isGoogleReady, setIsGoogleReady] = useState(false);
 
   const initAutocomplete = useCallback(() => {
     if (!inputRef.current) return false;
@@ -46,17 +52,15 @@ export default function AddressAutocomplete({
       if (place.formatted_address) {
         onChange(place.formatted_address);
         onPlaceSelect?.(place);
+        setShowSuggestions(false);
       }
     });
 
+    setIsGoogleReady(true);
     return true;
   }, [onChange, onPlaceSelect]);
 
   useEffect(() => {
-    // Try immediately (if Maps script was already loaded)
-    if (initAutocomplete()) return;
-
-    // Otherwise poll every 200ms until the API is ready
     const interval = setInterval(() => {
       if (initAutocomplete()) clearInterval(interval);
     }, 200);
@@ -69,28 +73,126 @@ export default function AddressAutocomplete({
           autocompleteRef.current
         );
       }
+      if (blurTimeoutRef.current) {
+        clearTimeout(blurTimeoutRef.current);
+      }
     };
   }, [initAutocomplete]);
+
+  useEffect(() => {
+    if (isGoogleReady || value.trim().length < 3) {
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeout = setTimeout(async () => {
+      try {
+        const params = new URLSearchParams({
+          q: value.trim(),
+          format: "jsonv2",
+          addressdetails: "1",
+          countrycodes: "us",
+          limit: "5",
+        });
+
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?${params.toString()}`,
+          {
+            signal: controller.signal,
+            headers: {
+              "Accept-Language": "en-US,en",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          setSuggestions([]);
+          return;
+        }
+
+        const results = (await response.json()) as Array<{
+          display_name: string;
+          place_id: number;
+        }>;
+
+        setSuggestions(results);
+        setShowSuggestions(true);
+      } catch (error) {
+        if ((error as Error).name !== "AbortError") {
+          setSuggestions([]);
+        }
+      }
+    }, 250);
+
+    return () => {
+      controller.abort();
+      clearTimeout(timeout);
+    };
+  }, [isGoogleReady, value]);
+
+  const hasFallbackSuggestions = !isGoogleReady && showSuggestions && suggestions.length > 0;
 
   return (
     <div className="relative w-full">
       {showIcon && (
-        <MapPin
-          size={16}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-10"
-        />
+        <div className="pointer-events-none absolute inset-y-0 left-3 z-10 flex items-center">
+          <MapPin
+            size={16}
+            className="text-gray-400"
+          />
+        </div>
       )}
       <input
         ref={inputRef}
         id={id}
         type="text"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => {
+          onChange(e.target.value);
+          if (!isGoogleReady) {
+            if (e.target.value.trim().length < 3) {
+              setSuggestions([]);
+            }
+            setShowSuggestions(true);
+          }
+        }}
         placeholder={placeholder}
         required={required}
         autoComplete="off"
-        className={`${showIcon ? "pl-9" : ""} ${className}`}
+        onFocus={() => {
+          if (!isGoogleReady && suggestions.length > 0) {
+            setShowSuggestions(true);
+          }
+        }}
+        onBlur={() => {
+          blurTimeoutRef.current = setTimeout(() => {
+            setShowSuggestions(false);
+          }, 120);
+        }}
+        className={`${className} ${showIcon ? "pl-10" : ""}`}
       />
+
+      {hasFallbackSuggestions && (
+        <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-xl border border-[#e5e7eb] bg-white shadow-[0_18px_40px_rgba(10,9,21,0.18)]">
+          <ul className="max-h-80 overflow-y-auto py-2">
+            {suggestions.map((suggestion) => (
+              <li key={suggestion.place_id}>
+                <button
+                  type="button"
+                  onMouseDown={(event) => {
+                    event.preventDefault();
+                    onChange(suggestion.display_name);
+                    setShowSuggestions(false);
+                  }}
+                  className="block w-full px-4 py-3 text-left text-sm leading-6 text-[#0a0915] transition-colors duration-150 hover:bg-[#f7f6f4]"
+                >
+                  {suggestion.display_name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

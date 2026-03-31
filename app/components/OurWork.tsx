@@ -1,31 +1,61 @@
+import Image from "next/image";
+
 const properties = [
   {
     address: "2847 Desert Rose Ln",
     area: "Summerlin, NV",
     status: "Sold",
     price: "$385,000",
-    gradient: "from-blue-900 to-blue-700",
+    image: "/properties/home-1.jpg",
   },
   {
     address: "5102 Flamingo Rd",
     area: "Las Vegas, NV",
     status: "Sold",
     price: "$295,000",
-    gradient: "from-slate-800 to-slate-600",
+    image: "/properties/home-2.jpg",
   },
   {
     address: "1429 Sunrise Valley",
     area: "Henderson, NV",
     status: "Sold",
     price: "$420,000",
-    gradient: "from-zinc-800 to-zinc-600",
+    image: "/properties/home-3.jpg",
   },
   {
     address: "3310 Nellis Blvd",
     area: "North Las Vegas, NV",
     status: "Sold",
     price: "$265,000",
-    gradient: "from-stone-800 to-stone-600",
+    image: "/properties/home-4.jpg",
+  },
+  {
+    address: "901 Bluebird Canyon",
+    area: "Green Valley, NV",
+    status: "Sold",
+    price: "$348,000",
+    image: "/properties/home-5.jpg",
+  },
+  {
+    address: "755 Canyon Retreat Ct",
+    area: "Spring Valley, NV",
+    status: "Sold",
+    price: "$312,000",
+    image: "/properties/home-6.jpg",
+  },
+  {
+    address: "2219 Silver Mesa Dr",
+    area: "Paradise, NV",
+    status: "Sold",
+    price: "$459,000",
+    image: "/properties/home-7.jpg",
+  },
+  {
+    address: "4680 Orchard Grove Ave",
+    area: "Enterprise, NV",
+    status: "Sold",
+    price: "$334,000",
+    image: "/properties/home-8.jpg",
   },
 ];
 
@@ -51,14 +81,15 @@ export default function OurWork() {
               key={i}
               className="rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group"
             >
-              {/* Property image placeholder */}
-              <div className={`relative h-48 bg-gradient-to-br ${p.gradient} flex items-end`}>
-                {/* House icon */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                  <svg viewBox="0 0 100 80" className="w-32 h-32 text-white fill-white">
-                    <polygon points="50,5 95,40 85,40 85,75 60,75 60,55 40,55 40,75 15,75 15,40 5,40" />
-                  </svg>
-                </div>
+              <div className="relative h-48 flex items-end">
+                <Image
+                  src={p.image}
+                  alt={`Property at ${p.address}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/25" />
                 <div className="absolute top-3 right-3">
                   <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
                     {p.status}

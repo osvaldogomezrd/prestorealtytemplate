@@ -22,20 +22,14 @@ export default function ServiceAreas() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Map placeholder */}
-          <div className="rounded-2xl overflow-hidden shadow-md bg-gray-100 h-80 flex items-center justify-center relative">
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%)",
-              }}
+          <div className="rounded-2xl overflow-hidden shadow-md h-80">
+            <iframe
+              title="Clark County Nevada service area map"
+              src="https://www.google.com/maps?q=Clark+County+Nevada&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="relative text-center">
-              <div className="text-6xl mb-4">🗺️</div>
-              <p className="text-[#1a2744] font-bold text-lg">Clark County, NV</p>
-              <p className="text-blue-600 text-sm mt-1">Interactive map coming soon</p>
-            </div>
           </div>
 
           {/* Areas list */}

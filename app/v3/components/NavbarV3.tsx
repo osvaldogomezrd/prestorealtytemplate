@@ -8,7 +8,7 @@ export default function NavbarV3() {
   const [homeDropdownOpen, setHomeDropdownOpen] = useState(false);
 
   const homeLinks = [
-    { href: "/", label: "Home" },
+    { href: "/", label: "Home v1" },
     { href: "/v2", label: "Home v2" },
     { href: "/v3", label: "Home v3" },
   ];
@@ -51,7 +51,7 @@ export default function NavbarV3() {
                   aria-haspopup="true"
                   aria-expanded={homeDropdownOpen}
                 >
-                  Home
+                  Home v1
                   <ChevronDown
                     size={16}
                     className={`transition-transform duration-200 ${homeDropdownOpen ? "rotate-180" : ""}`}

@@ -8,6 +8,10 @@ const inter = Inter({
   display: "swap",
 });
 
+const googleMapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+const hasValidGoogleMapsKey =
+  !!googleMapsApiKey && googleMapsApiKey !== "your_api_key_here";
+
 export const metadata: Metadata = {
   title: "Presto Realty Las Vegas | Fast Cash Home Buyers | No Fees",
   description:
@@ -31,9 +35,9 @@ export default function RootLayout({
     <html lang="en" className={`${inter.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         {children}
-        {process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY && (
+        {hasValidGoogleMapsKey && (
           <Script
-            src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
+            src={`https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&libraries=places`}
             strategy="afterInteractive"
           />
         )}

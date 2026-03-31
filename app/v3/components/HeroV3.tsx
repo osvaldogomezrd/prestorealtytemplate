@@ -27,18 +27,18 @@ export default function HeroV3() {
             Sell Your House For Cash Today!
           </h1>
 
-          <div className="flex w-full max-w-[535px] flex-col overflow-hidden rounded-lg shadow-[0_24px_40px_rgba(10,9,21,0.2)] sm:flex-row">
-            <div className="w-full bg-white sm:w-[326px]">
+          <div className="flex w-full max-w-[535px] flex-col rounded-[8px] shadow-[0_24px_40px_rgba(10,9,21,0.2)] sm:flex-row">
+            <div className="relative z-20 w-full overflow-visible rounded-t-[8px] bg-white sm:w-[326px] sm:rounded-l-[8px] sm:rounded-tr-none">
               <AddressAutocomplete
                 value={address}
                 onChange={setAddress}
                 placeholder="Enter Your Home Address"
-                className="h-[60px] w-full border-0 bg-transparent px-4 text-base font-medium text-neutral-700 outline-none placeholder:text-[#666666]"
+                className="h-[60px] w-full rounded-t-[8px] border-0 bg-transparent px-4 text-base font-medium text-neutral-700 outline-none placeholder:text-[#666666] sm:rounded-l-[8px] sm:rounded-tr-none"
               />
             </div>
             <a
               href="#contact"
-              className="flex h-[60px] min-w-[209px] items-center justify-center bg-[#dbfb1e] px-6 text-base font-medium text-[#0a0915] transition-colors duration-200 hover:bg-[#c7eb00]"
+              className="flex h-[60px] min-w-[209px] items-center justify-center rounded-b-[8px] bg-[#dbfb1e] px-6 text-base font-medium text-[#0a0915] transition-colors duration-200 hover:bg-[#c7eb00] sm:rounded-b-none sm:rounded-r-[8px]"
             >
               GET MY OFFER
             </a>

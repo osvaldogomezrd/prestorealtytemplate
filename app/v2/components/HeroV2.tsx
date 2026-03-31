@@ -50,13 +50,13 @@ export default function HeroV2() {
 
             {/* Address input + CTA */}
             <div className="bg-white rounded-full shadow-2xl p-2 flex flex-col sm:flex-row gap-2 max-w-xl mb-8">
-              <AddressAutocomplete
-                value={address}
-                onChange={setAddress}
-                placeholder="Enter your property address..."
-                showIcon
-                className="flex-1 outline-none text-gray-700 text-sm placeholder-gray-400 px-2 py-2 w-full rounded-full"
-              />
+                <AddressAutocomplete
+                  value={address}
+                  onChange={setAddress}
+                  placeholder="Enter your property address..."
+                  showIcon
+                  className="h-11 w-full flex-1 rounded-full px-2 py-2 text-sm leading-normal text-gray-700 placeholder-gray-400 outline-none"
+                />
               <button
                 type="button"
                 className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-full text-sm transition-colors duration-200 whitespace-nowrap"

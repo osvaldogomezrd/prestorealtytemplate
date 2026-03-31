@@ -47,13 +47,13 @@ export default function Hero() {
 
           {/* Search form */}
           <div className="bg-white rounded-xl shadow-2xl p-2 flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto">
-            <AddressAutocomplete
-              value={address}
-              onChange={setAddress}
-              placeholder="Enter your property address..."
-              showIcon
-              className="flex-1 outline-none text-gray-700 text-sm placeholder-gray-400 px-2 py-2 w-full"
-            />
+              <AddressAutocomplete
+                value={address}
+                onChange={setAddress}
+                placeholder="Enter your property address..."
+                showIcon
+                className="h-11 w-full flex-1 px-2 py-2 text-sm leading-normal text-gray-700 placeholder-gray-400 outline-none"
+              />
             <a
               href="#contact"
               className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded-lg text-sm transition-colors duration-200 text-center whitespace-nowrap"

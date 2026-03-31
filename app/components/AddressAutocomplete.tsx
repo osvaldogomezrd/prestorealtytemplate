@@ -169,7 +169,7 @@ export default function AddressAutocomplete({
             setShowSuggestions(false);
           }, 120);
         }}
-        className={`${className} ${showIcon ? "pl-10" : ""}`}
+        className={`${className} ${showIcon ? "!pl-10" : ""} leading-normal`}
       />
 
       {hasFallbackSuggestions && (
